@@ -32,7 +32,9 @@ namespace Slingshot.PCO.Models.DTO
             Name = data.Item.name;
             Sequence = data.Item.sequence;
             Slug = data.Item.slug;
-            Config = data.Item.config;
+            // Throwing Runtime Binder error from line 35 suggesting we were missing an explicit cast from LinqJson object to String
+            // Mason added .ToString()
+            Config = data.Item.config.ToString();
             DeletedAt = data.Item.deteled_at;
             TabId = data.Item.tab_id;
 

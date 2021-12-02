@@ -183,7 +183,7 @@ namespace Slingshot.PCO.Utilities
             }
             catch ( Exception ex )
             {
-                if ( !ignoreApiErrors )
+                if ( true )
                 {
                     PCOApi.ErrorMessage = ex.Message;
                 }
