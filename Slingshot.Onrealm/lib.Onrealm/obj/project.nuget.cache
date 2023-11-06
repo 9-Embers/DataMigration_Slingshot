@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "5PSzvMa6dQSFPoRrq1gg+mcKLovCS1fQbrmNDFcBa+c8uRWgaS1ipF2Ru0sjvDzCtrD28au1xRb7nhS257VdIw==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\MarkLee\\source\\repos\\Slingshot.Onrealm\\lib.Onrealm\\lib.Onrealm.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\MarkLee\\.nuget\\packages\\htmlagilitypack\\1.11.54\\htmlagilitypack.1.11.54.nupkg.sha512"
+  ],
+  "logs": []
+}
