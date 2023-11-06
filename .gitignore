@@ -1,2 +1,24 @@
 .vs
 .localhistory/
+
+
+#build artifacts
+**/[Bb]in/[Dd]ebug
+**/[Bb]in/[Rr]elease
+**/[Oo]bj/[Dd]ebug
+**/[Oo]bj/[Rr]elease
+
+#specific folders
+RockWeb/Cache/*
+RockWeb/Content/ASM_Thumbnails
+RockWeb/App_Data/PackageStaging
+RockWeb/App_Data/MobileAppBundles
+/scaffolding.config
+*.sln.GhostDoc.xml
+.vs/
+.vshistory/
+.localhistory/
+.vshistory/
+TestResults/
+
+Packages/*
