@@ -1,17 +1,32 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\MarkLee\\source\\repos\\Slingshot.Onrealm\\Slingshot.Onrealm\\Slingshot.Onrealm.csproj": {}
+    "C:\\Users\\MarkLee\\source\\repos\\DataMigration_Slingshot\\Slingshot.Onrealm\\Slingshot.Onrealm\\Slingshot.Onrealm.csproj": {}
   },
   "projects": {
-    "C:\\Users\\MarkLee\\source\\repos\\Slingshot.Onrealm\\lib.Onrealm\\lib.Onrealm.csproj": {
+    "C:\\Users\\MarkLee\\source\\repos\\DataMigration_Slingshot\\Slingshot.Core\\Slingshot.Core\\Slingshot.Core.csproj": {
+      "restore": {
+        "projectUniqueName": "C:\\Users\\MarkLee\\source\\repos\\DataMigration_Slingshot\\Slingshot.Core\\Slingshot.Core\\Slingshot.Core.csproj",
+        "projectName": "Slingshot.Core",
+        "projectPath": "C:\\Users\\MarkLee\\source\\repos\\DataMigration_Slingshot\\Slingshot.Core\\Slingshot.Core\\Slingshot.Core.csproj",
+        "frameworks": {
+          "net472": {
+            "projectReferences": {}
+          }
+        }
+      },
+      "frameworks": {
+        "net472": {}
+      }
+    },
+    "C:\\Users\\MarkLee\\source\\repos\\DataMigration_Slingshot\\Slingshot.Onrealm\\lib.Onrealm\\lib.Onrealm.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\MarkLee\\source\\repos\\Slingshot.Onrealm\\lib.Onrealm\\lib.Onrealm.csproj",
+        "projectUniqueName": "C:\\Users\\MarkLee\\source\\repos\\DataMigration_Slingshot\\Slingshot.Onrealm\\lib.Onrealm\\lib.Onrealm.csproj",
         "projectName": "lib.Onrealm",
-        "projectPath": "C:\\Users\\MarkLee\\source\\repos\\Slingshot.Onrealm\\lib.Onrealm\\lib.Onrealm.csproj",
+        "projectPath": "C:\\Users\\MarkLee\\source\\repos\\DataMigration_Slingshot\\Slingshot.Onrealm\\lib.Onrealm\\lib.Onrealm.csproj",
         "packagesPath": "C:\\Users\\MarkLee\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\MarkLee\\source\\repos\\Slingshot.Onrealm\\lib.Onrealm\\obj\\",
+        "outputPath": "C:\\Users\\MarkLee\\source\\repos\\DataMigration_Slingshot\\Slingshot.Onrealm\\lib.Onrealm\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -32,7 +47,11 @@
         "frameworks": {
           "net7.0": {
             "targetAlias": "net7.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "C:\\Users\\MarkLee\\source\\repos\\DataMigration_Slingshot\\Slingshot.Core\\Slingshot.Core\\Slingshot.Core.csproj": {
+                "projectPath": "C:\\Users\\MarkLee\\source\\repos\\DataMigration_Slingshot\\Slingshot.Core\\Slingshot.Core\\Slingshot.Core.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
@@ -70,14 +89,14 @@
         }
       }
     },
-    "C:\\Users\\MarkLee\\source\\repos\\Slingshot.Onrealm\\Slingshot.Onrealm\\Slingshot.Onrealm.csproj": {
+    "C:\\Users\\MarkLee\\source\\repos\\DataMigration_Slingshot\\Slingshot.Onrealm\\Slingshot.Onrealm\\Slingshot.Onrealm.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\MarkLee\\source\\repos\\Slingshot.Onrealm\\Slingshot.Onrealm\\Slingshot.Onrealm.csproj",
+        "projectUniqueName": "C:\\Users\\MarkLee\\source\\repos\\DataMigration_Slingshot\\Slingshot.Onrealm\\Slingshot.Onrealm\\Slingshot.Onrealm.csproj",
         "projectName": "Slingshot.Onrealm",
-        "projectPath": "C:\\Users\\MarkLee\\source\\repos\\Slingshot.Onrealm\\Slingshot.Onrealm\\Slingshot.Onrealm.csproj",
+        "projectPath": "C:\\Users\\MarkLee\\source\\repos\\DataMigration_Slingshot\\Slingshot.Onrealm\\Slingshot.Onrealm\\Slingshot.Onrealm.csproj",
         "packagesPath": "C:\\Users\\MarkLee\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\MarkLee\\source\\repos\\Slingshot.Onrealm\\Slingshot.Onrealm\\obj\\",
+        "outputPath": "C:\\Users\\MarkLee\\source\\repos\\DataMigration_Slingshot\\Slingshot.Onrealm\\Slingshot.Onrealm\\obj\\",
         "projectStyle": "PackageReference",
         "crossTargeting": true,
         "fallbackFolders": [
@@ -103,32 +122,32 @@
           "net7.0-android33.0": {
             "targetAlias": "net7.0-android",
             "projectReferences": {
-              "C:\\Users\\MarkLee\\source\\repos\\Slingshot.Onrealm\\lib.Onrealm\\lib.Onrealm.csproj": {
-                "projectPath": "C:\\Users\\MarkLee\\source\\repos\\Slingshot.Onrealm\\lib.Onrealm\\lib.Onrealm.csproj"
+              "C:\\Users\\MarkLee\\source\\repos\\DataMigration_Slingshot\\Slingshot.Onrealm\\lib.Onrealm\\lib.Onrealm.csproj": {
+                "projectPath": "C:\\Users\\MarkLee\\source\\repos\\DataMigration_Slingshot\\Slingshot.Onrealm\\lib.Onrealm\\lib.Onrealm.csproj"
               }
             }
           },
           "net7.0-ios16.1": {
             "targetAlias": "net7.0-ios",
             "projectReferences": {
-              "C:\\Users\\MarkLee\\source\\repos\\Slingshot.Onrealm\\lib.Onrealm\\lib.Onrealm.csproj": {
-                "projectPath": "C:\\Users\\MarkLee\\source\\repos\\Slingshot.Onrealm\\lib.Onrealm\\lib.Onrealm.csproj"
+              "C:\\Users\\MarkLee\\source\\repos\\DataMigration_Slingshot\\Slingshot.Onrealm\\lib.Onrealm\\lib.Onrealm.csproj": {
+                "projectPath": "C:\\Users\\MarkLee\\source\\repos\\DataMigration_Slingshot\\Slingshot.Onrealm\\lib.Onrealm\\lib.Onrealm.csproj"
               }
             }
           },
           "net7.0-maccatalyst16.1": {
             "targetAlias": "net7.0-maccatalyst",
             "projectReferences": {
-              "C:\\Users\\MarkLee\\source\\repos\\Slingshot.Onrealm\\lib.Onrealm\\lib.Onrealm.csproj": {
-                "projectPath": "C:\\Users\\MarkLee\\source\\repos\\Slingshot.Onrealm\\lib.Onrealm\\lib.Onrealm.csproj"
+              "C:\\Users\\MarkLee\\source\\repos\\DataMigration_Slingshot\\Slingshot.Onrealm\\lib.Onrealm\\lib.Onrealm.csproj": {
+                "projectPath": "C:\\Users\\MarkLee\\source\\repos\\DataMigration_Slingshot\\Slingshot.Onrealm\\lib.Onrealm\\lib.Onrealm.csproj"
               }
             }
           },
           "net7.0-windows10.0.19041": {
             "targetAlias": "net7.0-windows10.0.19041.0",
             "projectReferences": {
-              "C:\\Users\\MarkLee\\source\\repos\\Slingshot.Onrealm\\lib.Onrealm\\lib.Onrealm.csproj": {
-                "projectPath": "C:\\Users\\MarkLee\\source\\repos\\Slingshot.Onrealm\\lib.Onrealm\\lib.Onrealm.csproj"
+              "C:\\Users\\MarkLee\\source\\repos\\DataMigration_Slingshot\\Slingshot.Onrealm\\lib.Onrealm\\lib.Onrealm.csproj": {
+                "projectPath": "C:\\Users\\MarkLee\\source\\repos\\DataMigration_Slingshot\\Slingshot.Onrealm\\lib.Onrealm\\lib.Onrealm.csproj"
               }
             }
           }

@@ -1942,13 +1942,23 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
-          "HtmlAgilityPack": "1.11.54"
+          "HtmlAgilityPack": "1.11.54",
+          "Slingshot.Core": "1.0.0"
         },
         "compile": {
           "bin/placeholder/lib.Onrealm.dll": {}
         },
         "runtime": {
           "bin/placeholder/lib.Onrealm.dll": {}
+        }
+      },
+      "Slingshot.Core/1.0.0": {
+        "type": "project",
+        "compile": {
+          "bin/placeholder/Slingshot.Core.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Slingshot.Core.dll": {}
         }
       }
     },
@@ -3893,13 +3903,23 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
-          "HtmlAgilityPack": "1.11.54"
+          "HtmlAgilityPack": "1.11.54",
+          "Slingshot.Core": "1.0.0"
         },
         "compile": {
           "bin/placeholder/lib.Onrealm.dll": {}
         },
         "runtime": {
           "bin/placeholder/lib.Onrealm.dll": {}
+        }
+      },
+      "Slingshot.Core/1.0.0": {
+        "type": "project",
+        "compile": {
+          "bin/placeholder/Slingshot.Core.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Slingshot.Core.dll": {}
         }
       }
     },
@@ -5844,13 +5864,23 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
-          "HtmlAgilityPack": "1.11.54"
+          "HtmlAgilityPack": "1.11.54",
+          "Slingshot.Core": "1.0.0"
         },
         "compile": {
           "bin/placeholder/lib.Onrealm.dll": {}
         },
         "runtime": {
           "bin/placeholder/lib.Onrealm.dll": {}
+        }
+      },
+      "Slingshot.Core/1.0.0": {
+        "type": "project",
+        "compile": {
+          "bin/placeholder/Slingshot.Core.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Slingshot.Core.dll": {}
         }
       }
     },
@@ -7795,13 +7825,23 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
-          "HtmlAgilityPack": "1.11.54"
+          "HtmlAgilityPack": "1.11.54",
+          "Slingshot.Core": "1.0.0"
         },
         "compile": {
           "bin/placeholder/lib.Onrealm.dll": {}
         },
         "runtime": {
           "bin/placeholder/lib.Onrealm.dll": {}
+        }
+      },
+      "Slingshot.Core/1.0.0": {
+        "type": "project",
+        "compile": {
+          "bin/placeholder/Slingshot.Core.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Slingshot.Core.dll": {}
         }
       }
     },
@@ -9746,13 +9786,23 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
-          "HtmlAgilityPack": "1.11.54"
+          "HtmlAgilityPack": "1.11.54",
+          "Slingshot.Core": "1.0.0"
         },
         "compile": {
           "bin/placeholder/lib.Onrealm.dll": {}
         },
         "runtime": {
           "bin/placeholder/lib.Onrealm.dll": {}
+        }
+      },
+      "Slingshot.Core/1.0.0": {
+        "type": "project",
+        "compile": {
+          "bin/placeholder/Slingshot.Core.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Slingshot.Core.dll": {}
         }
       }
     },
@@ -11697,13 +11747,23 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
-          "HtmlAgilityPack": "1.11.54"
+          "HtmlAgilityPack": "1.11.54",
+          "Slingshot.Core": "1.0.0"
         },
         "compile": {
           "bin/placeholder/lib.Onrealm.dll": {}
         },
         "runtime": {
           "bin/placeholder/lib.Onrealm.dll": {}
+        }
+      },
+      "Slingshot.Core/1.0.0": {
+        "type": "project",
+        "compile": {
+          "bin/placeholder/Slingshot.Core.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Slingshot.Core.dll": {}
         }
       }
     },
@@ -13648,13 +13708,23 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
-          "HtmlAgilityPack": "1.11.54"
+          "HtmlAgilityPack": "1.11.54",
+          "Slingshot.Core": "1.0.0"
         },
         "compile": {
           "bin/placeholder/lib.Onrealm.dll": {}
         },
         "runtime": {
           "bin/placeholder/lib.Onrealm.dll": {}
+        }
+      },
+      "Slingshot.Core/1.0.0": {
+        "type": "project",
+        "compile": {
+          "bin/placeholder/Slingshot.Core.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Slingshot.Core.dll": {}
         }
       }
     },
@@ -15599,13 +15669,23 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
-          "HtmlAgilityPack": "1.11.54"
+          "HtmlAgilityPack": "1.11.54",
+          "Slingshot.Core": "1.0.0"
         },
         "compile": {
           "bin/placeholder/lib.Onrealm.dll": {}
         },
         "runtime": {
           "bin/placeholder/lib.Onrealm.dll": {}
+        }
+      },
+      "Slingshot.Core/1.0.0": {
+        "type": "project",
+        "compile": {
+          "bin/placeholder/Slingshot.Core.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Slingshot.Core.dll": {}
         }
       }
     },
@@ -15809,13 +15889,23 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
-          "HtmlAgilityPack": "1.11.54"
+          "HtmlAgilityPack": "1.11.54",
+          "Slingshot.Core": "1.0.0"
         },
         "compile": {
           "bin/placeholder/lib.Onrealm.dll": {}
         },
         "runtime": {
           "bin/placeholder/lib.Onrealm.dll": {}
+        }
+      },
+      "Slingshot.Core/1.0.0": {
+        "type": "project",
+        "compile": {
+          "bin/placeholder/Slingshot.Core.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Slingshot.Core.dll": {}
         }
       }
     },
@@ -16019,13 +16109,23 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
-          "HtmlAgilityPack": "1.11.54"
+          "HtmlAgilityPack": "1.11.54",
+          "Slingshot.Core": "1.0.0"
         },
         "compile": {
           "bin/placeholder/lib.Onrealm.dll": {}
         },
         "runtime": {
           "bin/placeholder/lib.Onrealm.dll": {}
+        }
+      },
+      "Slingshot.Core/1.0.0": {
+        "type": "project",
+        "compile": {
+          "bin/placeholder/Slingshot.Core.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Slingshot.Core.dll": {}
         }
       }
     },
@@ -16229,13 +16329,23 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
-          "HtmlAgilityPack": "1.11.54"
+          "HtmlAgilityPack": "1.11.54",
+          "Slingshot.Core": "1.0.0"
         },
         "compile": {
           "bin/placeholder/lib.Onrealm.dll": {}
         },
         "runtime": {
           "bin/placeholder/lib.Onrealm.dll": {}
+        }
+      },
+      "Slingshot.Core/1.0.0": {
+        "type": "project",
+        "compile": {
+          "bin/placeholder/Slingshot.Core.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Slingshot.Core.dll": {}
         }
       }
     },
@@ -16439,13 +16549,23 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
-          "HtmlAgilityPack": "1.11.54"
+          "HtmlAgilityPack": "1.11.54",
+          "Slingshot.Core": "1.0.0"
         },
         "compile": {
           "bin/placeholder/lib.Onrealm.dll": {}
         },
         "runtime": {
           "bin/placeholder/lib.Onrealm.dll": {}
+        }
+      },
+      "Slingshot.Core/1.0.0": {
+        "type": "project",
+        "compile": {
+          "bin/placeholder/Slingshot.Core.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Slingshot.Core.dll": {}
         }
       }
     },
@@ -16649,13 +16769,23 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
-          "HtmlAgilityPack": "1.11.54"
+          "HtmlAgilityPack": "1.11.54",
+          "Slingshot.Core": "1.0.0"
         },
         "compile": {
           "bin/placeholder/lib.Onrealm.dll": {}
         },
         "runtime": {
           "bin/placeholder/lib.Onrealm.dll": {}
+        }
+      },
+      "Slingshot.Core/1.0.0": {
+        "type": "project",
+        "compile": {
+          "bin/placeholder/Slingshot.Core.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Slingshot.Core.dll": {}
         }
       }
     },
@@ -16859,13 +16989,23 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
-          "HtmlAgilityPack": "1.11.54"
+          "HtmlAgilityPack": "1.11.54",
+          "Slingshot.Core": "1.0.0"
         },
         "compile": {
           "bin/placeholder/lib.Onrealm.dll": {}
         },
         "runtime": {
           "bin/placeholder/lib.Onrealm.dll": {}
+        }
+      },
+      "Slingshot.Core/1.0.0": {
+        "type": "project",
+        "compile": {
+          "bin/placeholder/Slingshot.Core.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Slingshot.Core.dll": {}
         }
       }
     },
@@ -17069,13 +17209,23 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
-          "HtmlAgilityPack": "1.11.54"
+          "HtmlAgilityPack": "1.11.54",
+          "Slingshot.Core": "1.0.0"
         },
         "compile": {
           "bin/placeholder/lib.Onrealm.dll": {}
         },
         "runtime": {
           "bin/placeholder/lib.Onrealm.dll": {}
+        }
+      },
+      "Slingshot.Core/1.0.0": {
+        "type": "project",
+        "compile": {
+          "bin/placeholder/Slingshot.Core.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Slingshot.Core.dll": {}
         }
       }
     },
@@ -17279,13 +17429,23 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
-          "HtmlAgilityPack": "1.11.54"
+          "HtmlAgilityPack": "1.11.54",
+          "Slingshot.Core": "1.0.0"
         },
         "compile": {
           "bin/placeholder/lib.Onrealm.dll": {}
         },
         "runtime": {
           "bin/placeholder/lib.Onrealm.dll": {}
+        }
+      },
+      "Slingshot.Core/1.0.0": {
+        "type": "project",
+        "compile": {
+          "bin/placeholder/Slingshot.Core.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Slingshot.Core.dll": {}
         }
       }
     },
@@ -17489,13 +17649,23 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
-          "HtmlAgilityPack": "1.11.54"
+          "HtmlAgilityPack": "1.11.54",
+          "Slingshot.Core": "1.0.0"
         },
         "compile": {
           "bin/placeholder/lib.Onrealm.dll": {}
         },
         "runtime": {
           "bin/placeholder/lib.Onrealm.dll": {}
+        }
+      },
+      "Slingshot.Core/1.0.0": {
+        "type": "project",
+        "compile": {
+          "bin/placeholder/Slingshot.Core.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Slingshot.Core.dll": {}
         }
       }
     },
@@ -17699,13 +17869,23 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
-          "HtmlAgilityPack": "1.11.54"
+          "HtmlAgilityPack": "1.11.54",
+          "Slingshot.Core": "1.0.0"
         },
         "compile": {
           "bin/placeholder/lib.Onrealm.dll": {}
         },
         "runtime": {
           "bin/placeholder/lib.Onrealm.dll": {}
+        }
+      },
+      "Slingshot.Core/1.0.0": {
+        "type": "project",
+        "compile": {
+          "bin/placeholder/Slingshot.Core.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Slingshot.Core.dll": {}
         }
       }
     },
@@ -17909,13 +18089,23 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
-          "HtmlAgilityPack": "1.11.54"
+          "HtmlAgilityPack": "1.11.54",
+          "Slingshot.Core": "1.0.0"
         },
         "compile": {
           "bin/placeholder/lib.Onrealm.dll": {}
         },
         "runtime": {
           "bin/placeholder/lib.Onrealm.dll": {}
+        }
+      },
+      "Slingshot.Core/1.0.0": {
+        "type": "project",
+        "compile": {
+          "bin/placeholder/Slingshot.Core.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Slingshot.Core.dll": {}
         }
       }
     },
@@ -18119,13 +18309,23 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
-          "HtmlAgilityPack": "1.11.54"
+          "HtmlAgilityPack": "1.11.54",
+          "Slingshot.Core": "1.0.0"
         },
         "compile": {
           "bin/placeholder/lib.Onrealm.dll": {}
         },
         "runtime": {
           "bin/placeholder/lib.Onrealm.dll": {}
+        }
+      },
+      "Slingshot.Core/1.0.0": {
+        "type": "project",
+        "compile": {
+          "bin/placeholder/Slingshot.Core.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Slingshot.Core.dll": {}
         }
       }
     },
@@ -18329,13 +18529,23 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
-          "HtmlAgilityPack": "1.11.54"
+          "HtmlAgilityPack": "1.11.54",
+          "Slingshot.Core": "1.0.0"
         },
         "compile": {
           "bin/placeholder/lib.Onrealm.dll": {}
         },
         "runtime": {
           "bin/placeholder/lib.Onrealm.dll": {}
+        }
+      },
+      "Slingshot.Core/1.0.0": {
+        "type": "project",
+        "compile": {
+          "bin/placeholder/Slingshot.Core.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Slingshot.Core.dll": {}
         }
       }
     },
@@ -18539,13 +18749,23 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
-          "HtmlAgilityPack": "1.11.54"
+          "HtmlAgilityPack": "1.11.54",
+          "Slingshot.Core": "1.0.0"
         },
         "compile": {
           "bin/placeholder/lib.Onrealm.dll": {}
         },
         "runtime": {
           "bin/placeholder/lib.Onrealm.dll": {}
+        }
+      },
+      "Slingshot.Core/1.0.0": {
+        "type": "project",
+        "compile": {
+          "bin/placeholder/Slingshot.Core.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Slingshot.Core.dll": {}
         }
       }
     },
@@ -18749,13 +18969,23 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
-          "HtmlAgilityPack": "1.11.54"
+          "HtmlAgilityPack": "1.11.54",
+          "Slingshot.Core": "1.0.0"
         },
         "compile": {
           "bin/placeholder/lib.Onrealm.dll": {}
         },
         "runtime": {
           "bin/placeholder/lib.Onrealm.dll": {}
+        }
+      },
+      "Slingshot.Core/1.0.0": {
+        "type": "project",
+        "compile": {
+          "bin/placeholder/Slingshot.Core.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Slingshot.Core.dll": {}
         }
       }
     },
@@ -18959,13 +19189,23 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
-          "HtmlAgilityPack": "1.11.54"
+          "HtmlAgilityPack": "1.11.54",
+          "Slingshot.Core": "1.0.0"
         },
         "compile": {
           "bin/placeholder/lib.Onrealm.dll": {}
         },
         "runtime": {
           "bin/placeholder/lib.Onrealm.dll": {}
+        }
+      },
+      "Slingshot.Core/1.0.0": {
+        "type": "project",
+        "compile": {
+          "bin/placeholder/Slingshot.Core.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Slingshot.Core.dll": {}
         }
       }
     },
@@ -19308,13 +19548,23 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
-          "HtmlAgilityPack": "1.11.54"
+          "HtmlAgilityPack": "1.11.54",
+          "Slingshot.Core": "1.0.0"
         },
         "compile": {
           "bin/placeholder/lib.Onrealm.dll": {}
         },
         "runtime": {
           "bin/placeholder/lib.Onrealm.dll": {}
+        }
+      },
+      "Slingshot.Core/1.0.0": {
+        "type": "project",
+        "compile": {
+          "bin/placeholder/Slingshot.Core.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Slingshot.Core.dll": {}
         }
       }
     },
@@ -19629,13 +19879,23 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
-          "HtmlAgilityPack": "1.11.54"
+          "HtmlAgilityPack": "1.11.54",
+          "Slingshot.Core": "1.0.0"
         },
         "compile": {
           "bin/placeholder/lib.Onrealm.dll": {}
         },
         "runtime": {
           "bin/placeholder/lib.Onrealm.dll": {}
+        }
+      },
+      "Slingshot.Core/1.0.0": {
+        "type": "project",
+        "compile": {
+          "bin/placeholder/Slingshot.Core.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Slingshot.Core.dll": {}
         }
       }
     },
@@ -19950,13 +20210,23 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
-          "HtmlAgilityPack": "1.11.54"
+          "HtmlAgilityPack": "1.11.54",
+          "Slingshot.Core": "1.0.0"
         },
         "compile": {
           "bin/placeholder/lib.Onrealm.dll": {}
         },
         "runtime": {
           "bin/placeholder/lib.Onrealm.dll": {}
+        }
+      },
+      "Slingshot.Core/1.0.0": {
+        "type": "project",
+        "compile": {
+          "bin/placeholder/Slingshot.Core.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Slingshot.Core.dll": {}
         }
       }
     },
@@ -20271,13 +20541,23 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
-          "HtmlAgilityPack": "1.11.54"
+          "HtmlAgilityPack": "1.11.54",
+          "Slingshot.Core": "1.0.0"
         },
         "compile": {
           "bin/placeholder/lib.Onrealm.dll": {}
         },
         "runtime": {
           "bin/placeholder/lib.Onrealm.dll": {}
+        }
+      },
+      "Slingshot.Core/1.0.0": {
+        "type": "project",
+        "compile": {
+          "bin/placeholder/Slingshot.Core.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Slingshot.Core.dll": {}
         }
       }
     },
@@ -20592,13 +20872,23 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
-          "HtmlAgilityPack": "1.11.54"
+          "HtmlAgilityPack": "1.11.54",
+          "Slingshot.Core": "1.0.0"
         },
         "compile": {
           "bin/placeholder/lib.Onrealm.dll": {}
         },
         "runtime": {
           "bin/placeholder/lib.Onrealm.dll": {}
+        }
+      },
+      "Slingshot.Core/1.0.0": {
+        "type": "project",
+        "compile": {
+          "bin/placeholder/Slingshot.Core.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Slingshot.Core.dll": {}
         }
       }
     },
@@ -20913,13 +21203,23 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
-          "HtmlAgilityPack": "1.11.54"
+          "HtmlAgilityPack": "1.11.54",
+          "Slingshot.Core": "1.0.0"
         },
         "compile": {
           "bin/placeholder/lib.Onrealm.dll": {}
         },
         "runtime": {
           "bin/placeholder/lib.Onrealm.dll": {}
+        }
+      },
+      "Slingshot.Core/1.0.0": {
+        "type": "project",
+        "compile": {
+          "bin/placeholder/Slingshot.Core.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Slingshot.Core.dll": {}
         }
       }
     },
@@ -21234,13 +21534,23 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
-          "HtmlAgilityPack": "1.11.54"
+          "HtmlAgilityPack": "1.11.54",
+          "Slingshot.Core": "1.0.0"
         },
         "compile": {
           "bin/placeholder/lib.Onrealm.dll": {}
         },
         "runtime": {
           "bin/placeholder/lib.Onrealm.dll": {}
+        }
+      },
+      "Slingshot.Core/1.0.0": {
+        "type": "project",
+        "compile": {
+          "bin/placeholder/Slingshot.Core.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Slingshot.Core.dll": {}
         }
       }
     },
@@ -21561,13 +21871,23 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
-          "HtmlAgilityPack": "1.11.54"
+          "HtmlAgilityPack": "1.11.54",
+          "Slingshot.Core": "1.0.0"
         },
         "compile": {
           "bin/placeholder/lib.Onrealm.dll": {}
         },
         "runtime": {
           "bin/placeholder/lib.Onrealm.dll": {}
+        }
+      },
+      "Slingshot.Core/1.0.0": {
+        "type": "project",
+        "compile": {
+          "bin/placeholder/Slingshot.Core.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Slingshot.Core.dll": {}
         }
       }
     }
@@ -24857,6 +25177,11 @@
       "type": "project",
       "path": "../lib.Onrealm/lib.Onrealm.csproj",
       "msbuildProject": "../lib.Onrealm/lib.Onrealm.csproj"
+    },
+    "Slingshot.Core/1.0.0": {
+      "type": "project",
+      "path": "../../Slingshot.Core/Slingshot.Core/Slingshot.Core.csproj",
+      "msbuildProject": "../../Slingshot.Core/Slingshot.Core/Slingshot.Core.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -24913,11 +25238,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\MarkLee\\source\\repos\\Slingshot.Onrealm\\Slingshot.Onrealm\\Slingshot.Onrealm.csproj",
+      "projectUniqueName": "C:\\Users\\MarkLee\\source\\repos\\DataMigration_Slingshot\\Slingshot.Onrealm\\Slingshot.Onrealm\\Slingshot.Onrealm.csproj",
       "projectName": "Slingshot.Onrealm",
-      "projectPath": "C:\\Users\\MarkLee\\source\\repos\\Slingshot.Onrealm\\Slingshot.Onrealm\\Slingshot.Onrealm.csproj",
+      "projectPath": "C:\\Users\\MarkLee\\source\\repos\\DataMigration_Slingshot\\Slingshot.Onrealm\\Slingshot.Onrealm\\Slingshot.Onrealm.csproj",
       "packagesPath": "C:\\Users\\MarkLee\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\MarkLee\\source\\repos\\Slingshot.Onrealm\\Slingshot.Onrealm\\obj\\",
+      "outputPath": "C:\\Users\\MarkLee\\source\\repos\\DataMigration_Slingshot\\Slingshot.Onrealm\\Slingshot.Onrealm\\obj\\",
       "projectStyle": "PackageReference",
       "crossTargeting": true,
       "fallbackFolders": [
@@ -24943,32 +25268,32 @@
         "net7.0-android33.0": {
           "targetAlias": "net7.0-android",
           "projectReferences": {
-            "C:\\Users\\MarkLee\\source\\repos\\Slingshot.Onrealm\\lib.Onrealm\\lib.Onrealm.csproj": {
-              "projectPath": "C:\\Users\\MarkLee\\source\\repos\\Slingshot.Onrealm\\lib.Onrealm\\lib.Onrealm.csproj"
+            "C:\\Users\\MarkLee\\source\\repos\\DataMigration_Slingshot\\Slingshot.Onrealm\\lib.Onrealm\\lib.Onrealm.csproj": {
+              "projectPath": "C:\\Users\\MarkLee\\source\\repos\\DataMigration_Slingshot\\Slingshot.Onrealm\\lib.Onrealm\\lib.Onrealm.csproj"
             }
           }
         },
         "net7.0-ios16.1": {
           "targetAlias": "net7.0-ios",
           "projectReferences": {
-            "C:\\Users\\MarkLee\\source\\repos\\Slingshot.Onrealm\\lib.Onrealm\\lib.Onrealm.csproj": {
-              "projectPath": "C:\\Users\\MarkLee\\source\\repos\\Slingshot.Onrealm\\lib.Onrealm\\lib.Onrealm.csproj"
+            "C:\\Users\\MarkLee\\source\\repos\\DataMigration_Slingshot\\Slingshot.Onrealm\\lib.Onrealm\\lib.Onrealm.csproj": {
+              "projectPath": "C:\\Users\\MarkLee\\source\\repos\\DataMigration_Slingshot\\Slingshot.Onrealm\\lib.Onrealm\\lib.Onrealm.csproj"
             }
           }
         },
         "net7.0-maccatalyst16.1": {
           "targetAlias": "net7.0-maccatalyst",
           "projectReferences": {
-            "C:\\Users\\MarkLee\\source\\repos\\Slingshot.Onrealm\\lib.Onrealm\\lib.Onrealm.csproj": {
-              "projectPath": "C:\\Users\\MarkLee\\source\\repos\\Slingshot.Onrealm\\lib.Onrealm\\lib.Onrealm.csproj"
+            "C:\\Users\\MarkLee\\source\\repos\\DataMigration_Slingshot\\Slingshot.Onrealm\\lib.Onrealm\\lib.Onrealm.csproj": {
+              "projectPath": "C:\\Users\\MarkLee\\source\\repos\\DataMigration_Slingshot\\Slingshot.Onrealm\\lib.Onrealm\\lib.Onrealm.csproj"
             }
           }
         },
         "net7.0-windows10.0.19041": {
           "targetAlias": "net7.0-windows10.0.19041.0",
           "projectReferences": {
-            "C:\\Users\\MarkLee\\source\\repos\\Slingshot.Onrealm\\lib.Onrealm\\lib.Onrealm.csproj": {
-              "projectPath": "C:\\Users\\MarkLee\\source\\repos\\Slingshot.Onrealm\\lib.Onrealm\\lib.Onrealm.csproj"
+            "C:\\Users\\MarkLee\\source\\repos\\DataMigration_Slingshot\\Slingshot.Onrealm\\lib.Onrealm\\lib.Onrealm.csproj": {
+              "projectPath": "C:\\Users\\MarkLee\\source\\repos\\DataMigration_Slingshot\\Slingshot.Onrealm\\lib.Onrealm\\lib.Onrealm.csproj"
             }
           }
         }

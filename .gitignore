@@ -21,4 +21,5 @@ RockWeb/App_Data/MobileAppBundles
 .vshistory/
 TestResults/
 
-Packages/*
+*Packages/*
+*packages*

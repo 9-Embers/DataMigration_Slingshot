@@ -89,10 +89,13 @@ public partial class RequestManager
                 new KeyValuePair<string, string>( "page", page.ToString() ),
                 new KeyValuePair<string, string>( "sortName", "Date" ),
                 new KeyValuePair<string, string>( "sortAscending", "false" ),
-                new KeyValuePair<string, string>( "batchNumberFilterFrom", "" ),
-                new KeyValuePair<string, string>( "batchNumberFilterTo", "" ),
-                new KeyValuePair<string, string>( "giftAmountFilter", "" ),
-                new KeyValuePair<string, string>( "itemDateFilter", "{\"DateRangeType\":\"Custom\",\"BeginDate\":\"11/06/2010\",\"EndDate\":\"12/31/2030\"}" ),
+                new KeyValuePair<string, string>( "pageLoadDateTime", "" ),
+                new KeyValuePair<string, string>( "batchNumberFrom", "" ),
+                new KeyValuePair<string, string>( "batchNumberTo", "" ),
+                new KeyValuePair<string, string>( "giftAmount", "" ),
+                new KeyValuePair<string, string>( "giftReferenceFilter", "" ),
+                new KeyValuePair<string, string>( "isPosted", "true" ),
+                new KeyValuePair<string, string>( "dateRangeArgs", "{\"DateRangeType\":\"Custom\",\"BeginDate\":\"11/06/2010\",\"EndDate\":\"12/31/2030\"}" ),
                 new KeyValuePair<string, string>( "depositAccountsFilter", "" ),
 
                 new KeyValuePair<string, string>( "__RequestVerificationToken", header_ResponseVerificationToken! )

@@ -12,23 +12,32 @@ namespace lib.Onrealm.Data;
 
 public static class GroupsData
 {
-    private static ConcurrentQueue<Group> groups = new ConcurrentQueue<Group>();
-    private static ConcurrentQueue<Roster> rosters = new ConcurrentQueue<Roster>();
+    private static ConcurrentQueue<Group> groupsQueue = new ConcurrentQueue<Group>();
+    private static ConcurrentQueue<Roster> rostersQueue = new ConcurrentQueue<Roster>();
+
+    public static List<Group> Groups { get; private set; } = new List<Group>();
+    public static List<Roster> Rosters { get; private set; } = new List<Roster>();
 
     public static async Task GetAllGroups( string cookie )
     {
-        groups.Clear();
+        groupsQueue.Clear();
+        rostersQueue.Clear();
+        Groups.Clear();
+        Rosters.Clear();
 
         var requestManager = new RequestManager( cookie );
 
+        Debug.WriteLine( "Loading Groups" );
         var groupList = requestManager.GetGroupListAsync();
 
         await foreach ( var group in groupList )
         {
-            groups.Enqueue( group );
+            groupsQueue.Enqueue( group );
         }
 
-        var series = Enumerable.Range( 1, 3 ).ToList();
+        Groups.AddRange( groupsQueue );
+
+        var series = Enumerable.Range( 1, 5 ).ToList();
         var tasks = new List<Task>();
         foreach ( var i in series )
         {
@@ -37,31 +46,28 @@ public static class GroupsData
 
         await Task.WhenAll( tasks );
 
-        foreach ( var roster in rosters )
-        {
-            Debug.WriteLine( roster.IndividualId + ":" + roster.GroupId );
-        }
+        Rosters.AddRange( rostersQueue );
+        rostersQueue.Clear();
     }
 
-    public static async Task ProcessRoster( string cookie )
+    private static async Task ProcessRoster( string cookie )
     {
-        Debug.WriteLine( "ProcessRosterStarted" );
         var requestManager = new RequestManager( cookie );
 
         while ( true )
         {
-            if (groups.TryDequeue( out var group ) )
+            if ( groupsQueue.TryDequeue( out var group ) )
             {
-                if (group?.GroupId == null )
+                if ( group?.GroupId == null )
                 {
                     continue;
                 }
 
-                var roster =  requestManager.GetRosterListAsync( group.GroupId );
-                await foreach (var individual in roster )
+                Debug.WriteLine( $"Loading Roster For {group.GroupId}" );
+                var roster = requestManager.GetRosterListAsync( group.GroupId );
+                await foreach ( var individual in roster )
                 {
-                    Debug.WriteLine( individual.RosterId );
-                    rosters.Enqueue( individual );
+                    rostersQueue.Enqueue( individual );
                 }
 
             }

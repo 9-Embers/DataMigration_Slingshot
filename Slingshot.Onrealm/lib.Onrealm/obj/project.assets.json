@@ -14,6 +14,15 @@
             "related": ".deps.json;.pdb;.xml"
           }
         }
+      },
+      "Slingshot.Core/1.0.0": {
+        "type": "project",
+        "compile": {
+          "bin/placeholder/Slingshot.Core.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Slingshot.Core.dll": {}
+        }
       }
     }
   },
@@ -65,11 +74,17 @@
         "lib/uap10.0/HtmlAgilityPack.pdb",
         "lib/uap10.0/HtmlAgilityPack.pri"
       ]
+    },
+    "Slingshot.Core/1.0.0": {
+      "type": "project",
+      "path": "../../Slingshot.Core/Slingshot.Core/Slingshot.Core.csproj",
+      "msbuildProject": "../../Slingshot.Core/Slingshot.Core/Slingshot.Core.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net7.0": [
-      "HtmlAgilityPack >= 1.11.54"
+      "HtmlAgilityPack >= 1.11.54",
+      "Slingshot.Core >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -79,11 +94,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\MarkLee\\source\\repos\\Slingshot.Onrealm\\lib.Onrealm\\lib.Onrealm.csproj",
+      "projectUniqueName": "C:\\Users\\MarkLee\\source\\repos\\DataMigration_Slingshot\\Slingshot.Onrealm\\lib.Onrealm\\lib.Onrealm.csproj",
       "projectName": "lib.Onrealm",
-      "projectPath": "C:\\Users\\MarkLee\\source\\repos\\Slingshot.Onrealm\\lib.Onrealm\\lib.Onrealm.csproj",
+      "projectPath": "C:\\Users\\MarkLee\\source\\repos\\DataMigration_Slingshot\\Slingshot.Onrealm\\lib.Onrealm\\lib.Onrealm.csproj",
       "packagesPath": "C:\\Users\\MarkLee\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\MarkLee\\source\\repos\\Slingshot.Onrealm\\lib.Onrealm\\obj\\",
+      "outputPath": "C:\\Users\\MarkLee\\source\\repos\\DataMigration_Slingshot\\Slingshot.Onrealm\\lib.Onrealm\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -104,7 +119,11 @@
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\MarkLee\\source\\repos\\DataMigration_Slingshot\\Slingshot.Core\\Slingshot.Core\\Slingshot.Core.csproj": {
+              "projectPath": "C:\\Users\\MarkLee\\source\\repos\\DataMigration_Slingshot\\Slingshot.Core\\Slingshot.Core\\Slingshot.Core.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
