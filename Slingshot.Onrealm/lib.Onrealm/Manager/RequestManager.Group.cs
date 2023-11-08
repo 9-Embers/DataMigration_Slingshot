@@ -3,6 +3,7 @@ using System.Net;
 using System.Text.Json;
 using HtmlAgilityPack;
 using lib.Onrealm.Contracts;
+using lib.Onrealm.Data;
 
 namespace lib.Onrealm.Manager;
 

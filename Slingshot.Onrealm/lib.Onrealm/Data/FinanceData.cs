@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Concurrent;
-using System.Collections.Generic;
+﻿using System.Collections.Concurrent;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using lib.Onrealm.Contracts;
 using lib.Onrealm.Manager;
 
@@ -127,13 +122,21 @@ public static class FinanceData
                     continue;
                 }
 
-                Debug.WriteLine( $"Loading Online Contributions For {batch.Id}" );
-                var contributions = await requestManager.GetOnlineBatchContributionsAsync( batch.Id );
-                foreach ( var contribution in contributions )
+                try
                 {
-                    OnlineContributionsQueue.Enqueue( contribution );
-                }
 
+                    Debug.WriteLine( $"Loading Online Contributions For {batch.Id}" );
+                    var contributions = await requestManager.GetOnlineBatchContributionsAsync( batch.Id );
+                    foreach ( var contribution in contributions )
+                    {
+                        OnlineContributionsQueue.Enqueue( contribution );
+                    }
+                }
+                catch ( Exception ex )
+                {
+                    Debug.WriteLine( ex.Message );
+                    ManualBatchQueue.Enqueue( batch );
+                }
             }
             else
             {

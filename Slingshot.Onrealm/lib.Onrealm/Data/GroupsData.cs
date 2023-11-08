@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Concurrent;
-using System.Collections.Generic;
+﻿using System.Collections.Concurrent;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Text.Json;
 using lib.Onrealm.Contracts;
 using lib.Onrealm.Manager;
+using lib.Onrealm.Model;
 
 namespace lib.Onrealm.Data;
 
@@ -20,6 +17,8 @@ public static class GroupsData
 
     public static async Task GetAllGroups( string cookie )
     {
+        Database.ExecuteNonQuery( "CREATE TABLE IF NOT EXISTS [Group] (Id INTEGER PRIMARY KEY AUTOINCREMENT, GroupId TEXT, GroupJson TEXT, GroupRosterJson TEXT)" );
+
         groupsQueue.Clear();
         rostersQueue.Clear();
         Groups.Clear();
@@ -27,15 +26,27 @@ public static class GroupsData
 
         var requestManager = new RequestManager( cookie );
 
-        Debug.WriteLine( "Loading Groups" );
-        var groupList = requestManager.GetGroupListAsync();
 
-        await foreach ( var group in groupList )
+        if ( !Database.ExecuteQuery<int>( "SELECT Id FROM [Group]" ).Any() )
         {
-            groupsQueue.Enqueue( group );
+            try
+            {
+
+                await LoadGroups( requestManager );
+
+            }
+            catch ( Exception ex )
+            {
+                Database.ExecuteNonQuery( "DROP TABLE [Group]" );
+                throw new Exception( "", ex );
+            }
         }
 
-        Groups.AddRange( groupsQueue );
+        var qry = Database.ExecuteQuery<SerializedGroup>( "SELECT * FROM [Group] WHERE GroupRosterJson is null" );
+        foreach ( var item in qry )
+        {
+            groupsQueue.Enqueue( JsonSerializer.Deserialize<Group>( item.GroupJson! )! );
+        }
 
         var series = Enumerable.Range( 1, 5 ).ToList();
         var tasks = new List<Task>();
@@ -46,8 +57,28 @@ public static class GroupsData
 
         await Task.WhenAll( tasks );
 
+        Groups.AddRange( groupsQueue );
         Rosters.AddRange( rostersQueue );
         rostersQueue.Clear();
+    }
+
+    private static async Task LoadGroups( RequestManager requestManager )
+    {
+        Debug.WriteLine( "Loading Groups" );
+        var groupList = requestManager.GetGroupListAsync();
+
+
+        await foreach ( var group in groupList )
+        {
+            Database.ExecuteNonQuery( "INSERT INTO [Group] (GroupId,GroupJson) Values ($groupId,$groupJson)",
+                new Dictionary<string, string>
+                {
+                    { "$groupId", group.GroupId! },
+                    { "$groupJson", JsonSerializer.Serialize(group) }
+                } );
+        }
+
+
     }
 
     private static async Task ProcessRoster( string cookie )
@@ -58,18 +89,24 @@ public static class GroupsData
         {
             if ( groupsQueue.TryDequeue( out var group ) )
             {
+                var rosterList = new List<Roster>();
+
                 if ( group?.GroupId == null )
                 {
                     continue;
                 }
 
                 Debug.WriteLine( $"Loading Roster For {group.GroupId}" );
-                var roster = requestManager.GetRosterListAsync( group.GroupId );
-                await foreach ( var individual in roster )
+                var rosters = requestManager.GetRosterListAsync( group.GroupId );
+                await foreach ( var roster in rosters )
                 {
-                    rostersQueue.Enqueue( individual );
+                    rosterList.Add( roster );
                 }
-
+                Database.ExecuteNonQuery( "UPDATE [Group] SET GroupRosterJson = $groupRosterJson WHERE GroupId = $groupId",
+                                        new Dictionary<string, string> {
+                                            { "$groupRosterJson", JsonSerializer.Serialize(rosterList) },
+                                            { "$groupId", group.GroupId}
+                                        } );
             }
             else
             {

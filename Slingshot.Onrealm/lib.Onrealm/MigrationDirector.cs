@@ -12,8 +12,8 @@ public static class MigrationDirector
     public static async Task Run( string cookie, bool startFromFiles = false )
     {
         StartFromFiles = startFromFiles;
-        //await ProcessGroups( cookie );
-        await ProcessFinances( cookie );
+        await ProcessGroups( cookie );
+        //await ProcessFinances( cookie );
     }
 
 
@@ -22,7 +22,7 @@ public static class MigrationDirector
         if ( !StartFromFiles )
         {
             await GroupsData.GetAllGroups( cookie );
-            //SaveObject( GroupsData.Groups, "groups.json" );
+            SaveObject( GroupsData.Groups, "groups.json" );
             SaveObject( GroupsData.Rosters, "rosters.json" );
         }
     }

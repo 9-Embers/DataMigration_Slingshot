@@ -7,7 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Dapper" Version="2.1.15" />
     <PackageReference Include="HtmlAgilityPack" Version="1.11.54" />
+    <PackageReference Include="Microsoft.Data.Sqlite" Version="7.0.13" />
+    <PackageReference Include="Microsoft.Data.Sqlite.Core" Version="7.0.13" />
   </ItemGroup>
 
   <ItemGroup>
