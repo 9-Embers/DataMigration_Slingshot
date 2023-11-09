@@ -13,7 +13,7 @@ public static class MigrationDirector
     {
         StartFromFiles = startFromFiles;
         await ProcessGroups( cookie );
-        //await ProcessFinances( cookie );
+        await ProcessFinances( cookie );
     }
 
 

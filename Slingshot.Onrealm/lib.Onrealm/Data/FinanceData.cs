@@ -1,7 +1,10 @@
-﻿using System.Collections.Concurrent;
+﻿using System;
+using System.Collections.Concurrent;
 using System.Diagnostics;
+using System.Text.Json;
 using lib.Onrealm.Contracts;
 using lib.Onrealm.Manager;
+using lib.Onrealm.Model;
 
 namespace lib.Onrealm.Data;
 
@@ -32,36 +35,96 @@ public static class FinanceData
         OnlineBatches.Clear();
         OnlineBatchQueue.Clear();
 
+        Database.ExecuteNonQuery( "CREATE TABLE IF NOT EXISTS [ManualBatch] (Id INTEGER PRIMARY KEY AUTOINCREMENT, BatchId TEXT, BatchJson TEXT, ContributionsJson TEXT)" );
+        Database.ExecuteNonQuery( "CREATE TABLE IF NOT EXISTS [OnlineBatch] (Id INTEGER PRIMARY KEY AUTOINCREMENT, BatchId TEXT, BatchJson TEXT, ContributionsJson TEXT)" );
+        Database.ExecuteNonQuery( "CREATE TABLE IF NOT EXISTS [Fund] (Id INTEGER PRIMARY KEY AUTOINCREMENT, FundId TEXT, FundJson TEXT)" );
+        Database.ExecuteNonQuery( "CREATE TABLE IF NOT EXISTS [Refund] (Id INTEGER PRIMARY KEY AUTOINCREMENT, RefundId TEXT, RefundJson TEXT)" );
+
+
         var requestManager = new RequestManager( cookie );
 
+        //FUNDS
         Debug.WriteLine( $"Loading Funds" );
-        var funds = requestManager.GetFundsListAsync();
-        await foreach ( var fund in funds )
+        if ( !Database.ExecuteQuery<int>( "SELECT Id FROM [Fund]" ).Any() )
         {
-            Funds.Add( fund );
+            try
+            {
+                var funds = requestManager.GetFundsListAsync();
+                await foreach ( var fund in funds )
+                {
+                    Database.ExecuteNonQuery( "INSERT INTO [Fund] (FundId,FundJson) Values ($fundId,$fundJson)",
+                        new Dictionary<string, string>
+                        {
+                            { "$fundId", fund.Id! },
+                            { "$fundJson", JsonSerializer.Serialize(fund) }
+                        } );
+                }
+            }
+            catch ( Exception ex )
+            {
+                Database.ExecuteNonQuery( "DROP TABLE [Fund]" );
+                throw new Exception( "", ex );
+            }
         }
 
+
         Debug.WriteLine( $"Loading Manual Batches" );
-        var manualBatches = requestManager.GetManualBatchListAsync();
-        await foreach ( var batch in manualBatches )
+        if ( !Database.ExecuteQuery<int>( "SELECT Id FROM [ManualBatch]" ).Any() )
         {
-            ManualBatchQueue.Enqueue( batch );
-            ManualBatches.Add( batch );
+            try
+            {
+                var manualBatches = requestManager.GetManualBatchListAsync();
+                await foreach ( var batch in manualBatches )
+                {
+                    Database.ExecuteNonQuery( "INSERT INTO [ManualBatch] (BatchId,BatchJson) Values ($batchId,$batchJson)",
+                       new Dictionary<string, string>
+                       {
+                            { "$batchId", batch.Id! },
+                            { "$batchJson", JsonSerializer.Serialize(batch) }
+                       } );
+                }
+            }
+            catch ( Exception ex )
+            {
+                Database.ExecuteNonQuery( "DROP TABLE [ManualBatch]" );
+                throw new Exception( "", ex );
+            }
         }
 
         Debug.WriteLine( $"Loading Online Batches" );
-        var onlineBatches = requestManager.GetOnlineBatchListAsync();
-        await foreach ( var batch in onlineBatches )
+        if ( !Database.ExecuteQuery<int>( "SELECT Id FROM [OnlineBatch]" ).Any() )
         {
-            OnlineBatchQueue.Enqueue( batch );
-            OnlineBatches.Add( batch );
+            try
+            {
+                var onlineBatches = requestManager.GetOnlineBatchListAsync();
+                await foreach ( var batch in onlineBatches )
+                {
+                    Database.ExecuteNonQuery( "INSERT INTO [OnlineBatch] (BatchId,BatchJson) Values ($batchId,$batchJson)",
+                       new Dictionary<string, string>
+                       {
+                            { "$batchId", batch.Id! },
+                            { "$batchJson", JsonSerializer.Serialize(batch) }
+                       } );
+                }
+            }
+            catch ( Exception ex )
+            {
+                Database.ExecuteNonQuery( "DROP TABLE [OnlineBatch]" );
+                throw new Exception( "", ex );
+            }
         }
+
 
         Debug.WriteLine( $"Loading Refunds" );
         Refunds = await requestManager.GetRefundsAsync();
 
         var series = Enumerable.Range( 1, 5 ).ToList();
 
+        var manualBatchQry = Database.ExecuteQuery<SerializedBatch>( "SELECT * FROM [ManualBatch] WHERE ContributionsJson is null" );
+        foreach ( var item in manualBatchQry )
+        {
+            ManualBatchQueue.Enqueue( JsonSerializer.Deserialize<Batch>( item.BatchJson! )! );
+        }
 
         var manualTasks = new List<Task>();
         foreach ( var i in series )
@@ -72,6 +135,12 @@ public static class FinanceData
         ManualContributions.AddRange( ManualContributionsQueue );
         ManualContributionsQueue.Clear();
 
+
+        var onlineBatchQry = Database.ExecuteQuery<SerializedBatch>( "SELECT * FROM [OnlineBatch] WHERE ContributionsJson is null" );
+        foreach ( var item in onlineBatchQry )
+        {
+            OnlineBatchQueue.Enqueue( JsonSerializer.Deserialize<Batch>( item.BatchJson! )! );
+        }
 
         var onlineTasks = new List<Task>();
         foreach ( var i in series )
@@ -95,12 +164,15 @@ public static class FinanceData
                 {
                     continue;
                 }
+
                 Debug.WriteLine( $"Loading Manual Contributions For {batch.Id}" );
                 var contributions = await requestManager.GetManualBatchContributionsAsync( batch.Id );
-                foreach ( var contribution in contributions )
-                {
-                    ManualContributionsQueue.Enqueue( contribution );
-                }
+
+                Database.ExecuteNonQuery( "UPDATE [ManualBatch] SET ContributionsJson = $contributionsJson WHERE BatchId = $batchId",
+                                   new Dictionary<string, string> {
+                                            { "$contributionsJson", JsonSerializer.Serialize(contributions) },
+                                            { "$batchId", batch.Id}
+                                   } );
             }
             else
             {
@@ -127,10 +199,12 @@ public static class FinanceData
 
                     Debug.WriteLine( $"Loading Online Contributions For {batch.Id}" );
                     var contributions = await requestManager.GetOnlineBatchContributionsAsync( batch.Id );
-                    foreach ( var contribution in contributions )
-                    {
-                        OnlineContributionsQueue.Enqueue( contribution );
-                    }
+
+                    Database.ExecuteNonQuery( "UPDATE [OnlineBatch] SET ContributionsJson = $contributionsJson WHERE BatchId = $batchId",
+                                  new Dictionary<string, string> {
+                                            { "$contributionsJson", JsonSerializer.Serialize(contributions) },
+                                            { "$batchId", batch.Id}
+                                  } );
                 }
                 catch ( Exception ex )
                 {
