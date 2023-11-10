@@ -8,12 +8,10 @@ namespace lib.Onrealm.Manager;
 
 public partial class RequestManager
 {
-    public async IAsyncEnumerable<Individual> GetIndividualListAsync()
+    public async Task<List<Individual>> GetIndividualListAsync()
     {
         await InitAsync( "https://onrealm.org/FriendsChurch/Queries" );
 
-
-        Response<Individual>? responseObj = null;
         var nvc = new List<KeyValuePair<string, string>>
             {
                 new KeyValuePair<string, string>( "query-id","" ),
@@ -40,7 +38,7 @@ public partial class RequestManager
 
         HttpClient httpClient = new HttpClient( handler );
 
-        IEnumerable<Individual> individuals = new List<Individual>();
+        List<Individual> individuals = new List<Individual>();
         try
         {
             var req = new HttpRequestMessage( HttpMethod.Post, "https://onrealm.org/FriendsChurch/Queries/ExportResults" ) { Content = new FormUrlEncodedContent( nvc ) };
@@ -50,20 +48,13 @@ public partial class RequestManager
 
             var csv = new CsvReader( reader, new CsvConfiguration { CultureInfo = CultureInfo.InvariantCulture } );
             csv.Configuration.RegisterClassMap<IndividualClassMap>();
-            individuals = csv.GetRecords<Individual>();
+            individuals = csv.GetRecords<Individual>().ToList();
         }
         catch ( Exception ex )
         {
             Console.WriteLine( ex );
         }
 
-
-        foreach ( var item in individuals )
-        {
-            yield return item;
-        }
-
-
-
+        return individuals;
     }
 }

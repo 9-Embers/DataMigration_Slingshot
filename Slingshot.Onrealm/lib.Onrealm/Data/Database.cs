@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Reflection;
 using Dapper;
 using Microsoft.Data.Sqlite;
 
@@ -13,6 +7,14 @@ namespace lib.Onrealm.Data;
 public static class Database
 {
 
+    internal static void ClearData()
+    {
+        var path = Path.Combine( System.IO.Path.GetDirectoryName( Assembly.GetEntryAssembly()!.Location )!, "Onrealm.db" );
+        if ( File.Exists( path ) )
+        {
+            File.Delete( path );
+        }
+    }
 
     public static void ExecuteNonQuery( string commandText, Dictionary<string, string>? parameters = null )
     {

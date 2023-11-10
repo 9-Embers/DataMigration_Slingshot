@@ -12,8 +12,8 @@
             <Label Text="StratusWeb Cookie" Margin="30,0" />
             <Editor x:Name="Token" Margin="30,-20" />
 
-            <Label Text="Load From Files (uncheck to load new data)" Margin="30,20,0,0" />
-            <CheckBox x:Name="FromFiles" Margin="30,-20"/>
+            <Label Text="Clear Saved Data" Margin="30,20,0,0" />
+            <CheckBox x:Name="ClearData" Margin="30,-20"/>
 
             <Button
                 x:Name="CounterBtn"

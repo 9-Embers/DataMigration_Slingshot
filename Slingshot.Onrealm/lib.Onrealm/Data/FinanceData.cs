@@ -10,21 +10,17 @@ namespace lib.Onrealm.Data;
 
 public static class FinanceData
 {
-    public static List<Fund> Funds { get; set; } = new List<Fund>();
-
-    public static List<Batch> ManualBatches { get; set; } = new List<Batch>();
+    private static ConcurrentQueue<Batch> OnlineBatchQueue { get; set; } = new ConcurrentQueue<Batch>();
     private static ConcurrentQueue<Batch> ManualBatchQueue { get; set; } = new ConcurrentQueue<Batch>();
 
-
+    public static List<Batch> ManualBatches { get; set; } = new List<Batch>();
     public static List<Batch> OnlineBatches { get; set; } = new List<Batch>();
-    private static ConcurrentQueue<Batch> OnlineBatchQueue { get; set; } = new ConcurrentQueue<Batch>();
 
+    public static List<Fund> Funds { get; set; } = new List<Fund>();
     public static List<Refund> Refunds { get; set; } = new List<Refund>();
 
     public static List<ManualContribution> ManualContributions { get; set; } = new List<ManualContribution>();
-    private static ConcurrentQueue<ManualContribution> ManualContributionsQueue { get; set; } = new ConcurrentQueue<ManualContribution>();
     public static List<OnlineContribution> OnlineContributions { get; set; } = new List<OnlineContribution>();
-    private static ConcurrentQueue<OnlineContribution> OnlineContributionsQueue { get; set; } = new ConcurrentQueue<OnlineContribution>();
 
 
     public static async Task Run( string cookie )
@@ -63,6 +59,7 @@ public static class FinanceData
             catch ( Exception ex )
             {
                 Database.ExecuteNonQuery( "DROP TABLE [Fund]" );
+                Debug.WriteLine( ex );
                 throw new Exception( "", ex );
             }
         }
@@ -87,6 +84,7 @@ public static class FinanceData
             catch ( Exception ex )
             {
                 Database.ExecuteNonQuery( "DROP TABLE [ManualBatch]" );
+                Debug.WriteLine( ex );
                 throw new Exception( "", ex );
             }
         }
@@ -110,10 +108,10 @@ public static class FinanceData
             catch ( Exception ex )
             {
                 Database.ExecuteNonQuery( "DROP TABLE [OnlineBatch]" );
+                Debug.WriteLine( ex );
                 throw new Exception( "", ex );
             }
         }
-
 
         Debug.WriteLine( $"Loading Refunds" );
         Refunds = await requestManager.GetRefundsAsync();
@@ -132,9 +130,6 @@ public static class FinanceData
             manualTasks.Add( ProcessManualContributions( cookie ) );
         }
         await Task.WhenAll( manualTasks );
-        ManualContributions.AddRange( ManualContributionsQueue );
-        ManualContributionsQueue.Clear();
-
 
         var onlineBatchQry = Database.ExecuteQuery<SerializedBatch>( "SELECT * FROM [OnlineBatch] WHERE ContributionsJson is null" );
         foreach ( var item in onlineBatchQry )
@@ -148,8 +143,33 @@ public static class FinanceData
             onlineTasks.Add( ProcessOnlineContributions( cookie ) );
         }
         await Task.WhenAll( onlineTasks );
-        OnlineContributions.AddRange( OnlineContributionsQueue );
-        OnlineContributionsQueue.Clear();
+
+
+        var fundQry = Database.ExecuteQuery<SerializedFund>( "SELECT * FROM [Fund]" );
+        foreach ( var item in fundQry )
+        {
+            Funds.Add( JsonSerializer.Deserialize<Fund>( item.FundJson! )! );
+        }
+
+        var refundQry = Database.ExecuteQuery<SerializedRefund>( "SELECT * FROM [Refund]" );
+        foreach ( var item in refundQry )
+        {
+            Refunds.Add( JsonSerializer.Deserialize<Refund>( item.RefundJson! )! );
+        }
+
+        var manualQry = Database.ExecuteQuery<SerializedBatch>( "SELECT * FROM [ManualBatch]" );
+        foreach ( var item in manualQry )
+        {
+            ManualBatches.Add( JsonSerializer.Deserialize<Batch>( item.BatchJson! )! );
+            ManualContributions.AddRange( JsonSerializer.Deserialize<List<ManualContribution>>( item.ContributionsJson! )! );
+        }
+
+        var onlineQry = Database.ExecuteQuery<SerializedBatch>( "SELECT * FROM [OnlineBatch]" );
+        foreach ( var item in onlineQry )
+        {
+            OnlineBatches.Add( JsonSerializer.Deserialize<Batch>( item.BatchJson! )! );
+            OnlineContributions.AddRange( JsonSerializer.Deserialize<List<OnlineContribution>>( item.ContributionsJson! )! );
+        }
     }
 
     private static async Task ProcessManualContributions( string cookie )
@@ -158,6 +178,9 @@ public static class FinanceData
 
         while ( true )
         {
+            try
+            {
+
             if ( ManualBatchQueue.TryDequeue( out var batch ) )
             {
                 if ( batch?.Id == null )
@@ -178,6 +201,12 @@ public static class FinanceData
             {
                 break;
             }
+            }
+            catch ( Exception ex )
+            {
+                Debug.WriteLine( ex );
+                throw new Exception( "", ex );
+            }
         }
     }
 
@@ -187,15 +216,15 @@ public static class FinanceData
 
         while ( true )
         {
-            if ( ManualBatchQueue.TryDequeue( out var batch ) )
+            try
             {
-                if ( batch?.Id == null )
+                if ( ManualBatchQueue.TryDequeue( out var batch ) )
                 {
-                    continue;
-                }
+                    if ( batch?.Id == null )
+                    {
+                        continue;
+                    }
 
-                try
-                {
 
                     Debug.WriteLine( $"Loading Online Contributions For {batch.Id}" );
                     var contributions = await requestManager.GetOnlineBatchContributionsAsync( batch.Id );
@@ -206,15 +235,15 @@ public static class FinanceData
                                             { "$batchId", batch.Id}
                                   } );
                 }
-                catch ( Exception ex )
+                else
                 {
-                    Debug.WriteLine( ex.Message );
-                    ManualBatchQueue.Enqueue( batch );
+                    break;
                 }
             }
-            else
+            catch ( Exception ex )
             {
-                break;
+                Debug.WriteLine( ex );
+                throw new Exception( "", ex );
             }
         }
     }

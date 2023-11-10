@@ -22,14 +22,8 @@ public partial class MainPage : ContentPage
 
     private async Task HandleRequest()
     {
-        // await MigrationDirector.Run( Token.Text, FromFiles.IsChecked );
-        var requestManager = new RequestManager( Token.Text );
-        var people = requestManager.GetIndividualListAsync();
-        
-        await foreach ( var person in people )
-        {
-            Debug.WriteLine( person.IndividualId );
-        }
+        await MigrationDirector.Run( Token.Text, ClearData.IsChecked );
+     
 
     }
 }
