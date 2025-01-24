@@ -19,7 +19,6 @@ public static class StringExtensions
             return value;
         }
         return 0;
-
     }
 
     public static string AsMaritalStatus( this string? s )
@@ -71,5 +70,10 @@ public static class StringExtensions
         {
             return string.Empty;
         }
+    }
+
+    public static string StripNonDigits(this string input )
+    {
+        return new String( input.Where( Char.IsDigit ).ToArray() );
     }
 }

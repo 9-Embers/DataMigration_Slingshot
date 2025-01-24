@@ -210,7 +210,7 @@ public partial class MainPage : ContentPage
                 {
                     phonenumberSb.AppendLine( $"{personId}," +
                         $"Home," +
-                        $"{person.Phone}," +
+                        $"{person.Phone.StripNonDigits().Truncate( 10 )}," +
                         $"False," +
                         $"False" );
                 }
@@ -219,7 +219,7 @@ public partial class MainPage : ContentPage
                 {
                     phonenumberSb.AppendLine( $"{personId}," +
                         $"Mobile," +
-                        $"{person.Mobile}," +
+                        $"{person.Mobile.StripNonDigits().Truncate(10)}," +
                         $"True," +
                         $"False" );
                 }
@@ -232,7 +232,7 @@ public partial class MainPage : ContentPage
                     && !string.IsNullOrEmpty( person.Country ) )
                 {
                     familiesWithSaveAddressses.Add( familyId );
-                    
+
                     var address = $"{personIdManager.GetId( person.Id )}," +
                         $"{person.Address.ForCSV()}," +
                         $"{person.Address2.ForCSV()}," +
@@ -434,15 +434,22 @@ public partial class MainPage : ContentPage
                         AuthorizedPersonId = personIdManager.GetId( transaction.PersonId ),
                         BatchId = batchesIdManager.GetId( transaction.Batch?.Id ),
                         TransactionDate = transaction.TransactionDate,
-                        CurrencyType = transaction.TransactionMethod,
+                        CurrencyType = GetCurrencyType( transaction.TransactionMethod ),
                         Summary = transaction.CheckNumber,
                         TransactionCode = transaction.Id,
                         Total = transaction.TransactionTotal.AsDecimal()
                     } );
 
 
+
                     foreach ( var amount in transaction.Amounts?.Amount ?? new List<Amount>() )
                     {
+                        if ( amount.Category == null )
+                        {
+                            //This data will break rock
+                            continue;
+                        }
+
                         financialTransactionDetails.Add( new FinancialTransactionDetail
                         {
                             Id = transactionDetailsIdManager.GetId( amount.Id ),
@@ -518,6 +525,30 @@ public partial class MainPage : ContentPage
             lSaveLocation.IsVisible = true;
             tbSaveLocation.Text = Environment.GetFolderPath( Environment.SpecialFolder.Desktop );
         } );
+    }
+
+    private List<string> validCurrencies = new List<string> { "Unknown", "Check", "Cash", "CreditCard", "ACH", "NonCash" };
+    private string GetCurrencyType( string transactionMethod )
+    {
+        if ( validCurrencies.Contains( transactionMethod ) )
+        {
+            return transactionMethod;
+        }
+
+        switch ( transactionMethod )
+        {
+            case "AutomaticDirectDebit":
+            case "BankTransfer":
+                return "ACH";
+            case "Cheque":
+                return "Check";
+            case "Online":
+                return "CreditCard";
+            default:
+                return "Unknown";
+        }
+
+
     }
 
     private void btnRetry_Clicked( object sender, EventArgs e )
