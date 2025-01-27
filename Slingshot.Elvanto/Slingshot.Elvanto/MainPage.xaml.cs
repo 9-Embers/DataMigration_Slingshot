@@ -373,6 +373,7 @@ public partial class MainPage : ContentPage
                 var accounts = client.Get<FinancialCategory>();
                 var accountSb = new StringBuilder();
                 accountSb.AppendLine( "Id,Name,IsTaxDeductible,CampusId,ParentAccountId" );
+                accountSb.AppendLine( "0,No Account,True,," );
                 var accountsIdManager = new IdLookupManager();
 
                 await foreach ( var account in accounts )
@@ -444,12 +445,6 @@ public partial class MainPage : ContentPage
 
                     foreach ( var amount in transaction.Amounts?.Amount ?? new List<Amount>() )
                     {
-                        if ( string.IsNullOrEmpty( amount.Category?.Id ) )
-                        {
-                            //This data will break rock
-                            continue;
-                        }
-
                         financialTransactionDetails.Add( new FinancialTransactionDetail
                         {
                             Id = transactionDetailsIdManager.GetId( amount.Id ),
