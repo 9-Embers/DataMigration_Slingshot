@@ -219,7 +219,7 @@ public partial class MainPage : ContentPage
                 {
                     phonenumberSb.AppendLine( $"{personId}," +
                         $"Mobile," +
-                        $"{person.Mobile.StripNonDigits().Truncate(10)}," +
+                        $"{person.Mobile.StripNonDigits().Truncate( 10 )}," +
                         $"True," +
                         $"False" );
                 }
@@ -444,7 +444,7 @@ public partial class MainPage : ContentPage
 
                     foreach ( var amount in transaction.Amounts?.Amount ?? new List<Amount>() )
                     {
-                        if ( amount.Category == null )
+                        if ( string.IsNullOrEmpty( amount.Category?.Id ) )
                         {
                             //This data will break rock
                             continue;
