@@ -181,6 +181,10 @@ public class Person : ElvantoContract
         {
             return "Inactive";
         }
+        if ( this.Deceased == 1 )
+        {
+            return "Inactive";
+        }
         return "Active";
     }
 

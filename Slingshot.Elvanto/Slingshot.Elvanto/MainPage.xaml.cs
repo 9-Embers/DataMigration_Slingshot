@@ -191,7 +191,7 @@ public partial class MainPage : ContentPage
                  $"{person.BirthdayFormatted}," +
                  $"," + //Anniversary Date
                  $"{person.GetRecordStatus()}," +
-                 $"," + //Inactive Reason
+                 $"{( person.Deceased == 1 ? "Deceased" : "" )}," + //Inactive Reason
                  $"{personalCategory}," +
                  $"{( person.GetRecordStatus() == "Active" ? "EmailAllowed" : "DoNotEmail" )}," +
                  $"{person.DateAddedFormatted}," +
