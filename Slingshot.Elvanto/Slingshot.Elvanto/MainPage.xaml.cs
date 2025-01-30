@@ -201,7 +201,7 @@ public partial class MainPage : ContentPage
                  $"{( person.Campus != null ? person.Campus.Name : "" )}," +
                  $"{personalCategory}," + //Person Note
                  $"{person.Grade}," +
-                 $"," + //Give Individually
+                 $"True," + //Give Individually
                  $"{( person.Deceased == 1 ? "TRUE" : "FALSE" )}";
                 personSb.AppendLine( personRow );
 
