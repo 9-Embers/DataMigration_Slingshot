@@ -309,7 +309,7 @@ public partial class MainPage : ContentPage
                         if ( !groupTypes.ContainsKey( groupTypeId ) )
                         {
                             groupTypes.Add( groupTypeId, groupType.Name ?? "Imported Group Type" );
-                            grouptypeSb.AppendLine( $"{groupTypeId}, {groupTypes[groupTypeId]}" );
+                            grouptypeSb.AppendLine( $"{groupTypeId},{groupTypes[groupTypeId].ForCSV()}" );
                         }
                     }
 
