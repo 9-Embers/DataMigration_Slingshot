@@ -140,6 +140,7 @@ public class Person : ElvantoContract
         foreach ( var field in customFields )
         {
             dataElement.TryGetProperty( field, out var value );
+
             if ( value.ValueKind == JsonValueKind.String )
             {
                 this.AttributeValues[field.Replace( "custom_", "" )] = value.ToString();
@@ -148,6 +149,13 @@ public class Person : ElvantoContract
             {
                 this.AttributeValues[field.Replace( "custom_", "" )] = valueValue.ToString();
             }
+            else
+            {
+                var customFieldValue = value.GetProperty( "custom_field" );
+                var items = customFieldValue.EnumerateArray();
+                this.AttributeValues[field.Replace( "custom_", "" )] = string.Join( "|", items.Select( i => i.GetProperty( "name" ).ToString() ) );
+            }
+
         }
 
         if ( dataElement.TryGetProperty( "school_grade", out var schoolGrade ) )
@@ -177,7 +185,7 @@ public class Person : ElvantoContract
 
     public string GetRecordStatus()
     {
-        if (this.Archived == 1 )
+        if ( this.Archived == 1 )
         {
             return "Inactive";
         }
