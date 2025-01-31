@@ -113,7 +113,26 @@ public partial class MainPage : ContentPage
                 if ( customField?.Name != null && !keys.Contains( customField.Id ) )
                 {
                     keys.Add( customField.Id );
-                    personAttributes.AppendLine( $"{customField.Id},{customField.Name},{( customField.Type == "datetime" ? "Rock.Field.Types.DateFieldType" : "Rock.Field.Types.TextFieldType" )},Elvanto" );
+
+                    var fieldType = "Rock.Field.Types.TextFieldType";
+
+                    switch ( customField.Type )
+                    {
+                        case "datepicker":
+                            fieldType = "Rock.Field.Types.DateFieldType";
+                            break;
+                        case "textarea":
+                            fieldType = "Rock.Field.Types.MemoFieldType";
+                            break;
+                        case "number":
+                            fieldType = "Rock.Field.Types.IntegerFieldType";
+                            break;
+                        default:
+                            break;
+                    }
+
+
+                    personAttributes.AppendLine( $"{customField.Id},{customField.Name},{fieldType},Elvanto" );
                     fields.Add( $"custom_{customField.Id}" );
                 }
             }
