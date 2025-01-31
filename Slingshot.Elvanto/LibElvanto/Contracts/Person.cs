@@ -149,35 +149,52 @@ public class Person : ElvantoContract
             {
                 this.AttributeValues[field.Replace( "custom_", "" )] = valueValue.ToString();
             }
-            else
+            else if ( value.ValueKind == JsonValueKind.Object
+                && value.TryGetProperty( "custom_field", out var customFieldValue ) )
             {
-                var customFieldValue = value.GetProperty( "custom_field" );
-                var items = customFieldValue.EnumerateArray();
-                this.AttributeValues[field.Replace( "custom_", "" )] = string.Join( "|", items.Select( i => i.GetProperty( "name" ).ToString() ) );
-            }
-
-        }
-
-        if ( dataElement.TryGetProperty( "school_grade", out var schoolGrade ) )
-        {
-            if ( schoolGrade.ValueKind != JsonValueKind.String
-                && schoolGrade.TryGetProperty( "name", out var gradeName ) )
-            {
-                this.Grade = gradeName.ToString();
-            }
-        }
-
-        if ( dataElement.TryGetProperty( "locations", out var locations ) )
-        {
-            if ( locations.ValueKind == JsonValueKind.Object
-                && locations.TryGetProperty( "location", out var location )
-                && location.ValueKind == JsonValueKind.Array )
-            {
-
-                var campus = location.EnumerateArray().FirstOrDefault();
-                if ( campus.ValueKind == JsonValueKind.Object )
+                if ( customFieldValue.ValueKind == JsonValueKind.Array )
                 {
-                    this.Campus = campus.Deserialize<IdNameContract>();
+                    var values = new List<string>();
+                    var items = customFieldValue.EnumerateArray();
+                    foreach ( var item in items )
+                    {
+                        if ( item.ValueKind == JsonValueKind.String )
+                        {
+                            values.Add( value.ToString() );
+                        }
+                        else if ( item.ValueKind == JsonValueKind.Object
+                            && item.TryGetProperty( "name", out var itemName ) )
+                        {
+                            values.Add( itemName.ToString() );
+                        }
+                    }
+                    this.AttributeValues[field.Replace( "custom_", "" )] = string.Join( "|", "name" );
+                }
+
+
+            }
+
+            if ( dataElement.TryGetProperty( "school_grade", out var schoolGrade ) )
+            {
+                if ( schoolGrade.ValueKind != JsonValueKind.String
+                    && schoolGrade.TryGetProperty( "name", out var gradeName ) )
+                {
+                    this.Grade = gradeName.ToString();
+                }
+            }
+
+            if ( dataElement.TryGetProperty( "locations", out var locations ) )
+            {
+                if ( locations.ValueKind == JsonValueKind.Object
+                    && locations.TryGetProperty( "location", out var location )
+                    && location.ValueKind == JsonValueKind.Array )
+                {
+
+                    var campus = location.EnumerateArray().FirstOrDefault();
+                    if ( campus.ValueKind == JsonValueKind.Object )
+                    {
+                        this.Campus = campus.Deserialize<IdNameContract>();
+                    }
                 }
             }
         }
