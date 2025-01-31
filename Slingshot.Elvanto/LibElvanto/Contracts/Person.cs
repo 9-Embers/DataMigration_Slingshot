@@ -168,7 +168,7 @@ public class Person : ElvantoContract
                             values.Add( itemName.ToString() );
                         }
                     }
-                    this.AttributeValues[field.Replace( "custom_", "" )] = string.Join( "|", "name" );
+                    this.AttributeValues[field.Replace( "custom_", "" )] = string.Join( "|", values );
                 }
 
 
