@@ -151,6 +151,8 @@ public partial class MainPage : ContentPage
 
             var personSb = new StringBuilder();
             personSb.AppendLine( "Id,FamilyId,FamilyName,FamilyImageUrl,FamilyRole,FirstName,NickName,LastName,MiddleName,Salutation,Suffix,Email,Gender,MaritalStatus,Birthdate,AnniversaryDate,RecordStatus,InactiveReason,ConnectionStatus,EmailPreference,CreatedDateTime,ModifiedDateTime,PersonPhotoUrl,CampusId,CampusName,Note,Grade,GiveIndividually,IsDeceased" );
+            var personSbWithGuid = new StringBuilder();
+            personSbWithGuid.AppendLine( "Id,FamilyId,FamilyName,FamilyImageUrl,FamilyRole,FirstName,NickName,LastName,MiddleName,Salutation,Suffix,Email,Gender,MaritalStatus,Birthdate,AnniversaryDate,RecordStatus,InactiveReason,ConnectionStatus,EmailPreference,CreatedDateTime,ModifiedDateTime,PersonPhotoUrl,CampusId,CampusName,Note,Grade,GiveIndividually,IsDeceased,ForeignGuid" );
 
             var personAttributeValue = new StringBuilder();
             personAttributeValue.AppendLine( "PersonId,AttributeKey,AttributeValue" );
@@ -223,6 +225,7 @@ public partial class MainPage : ContentPage
                  $"True," + //Give Individually
                  $"{( person.Deceased == 1 ? "TRUE" : "FALSE" )}";
                 personSb.AppendLine( personRow );
+                personSbWithGuid.Append( personRow + $",{person.Id}" );
 
                 //PhoneNumbers
                 if ( !string.IsNullOrWhiteSpace( person.Phone ) )
@@ -282,6 +285,8 @@ public partial class MainPage : ContentPage
 
             File.WriteAllText( $"{tempDir}\\person.csv", personSb.ToString() );
             zip.CreateEntryFromFile( $"{tempDir}\\person.csv", "person.csv" );
+            File.WriteAllText( $"{tempDir}\\person-foreign-guids.csv", personSbWithGuid.ToString() );
+            zip.CreateEntryFromFile( $"{tempDir}\\person-foreign-guids.csv", "person-foreign-guids.csv" );
             File.WriteAllText( $"{tempDir}\\person-attributevalue.csv", personAttributeValue.ToString() );
             zip.CreateEntryFromFile( $"{tempDir}\\person-attributevalue.csv", "person-attributevalue.csv" );
             File.WriteAllText( $"{tempDir}\\person-address.csv", personAddress.ToString() );
