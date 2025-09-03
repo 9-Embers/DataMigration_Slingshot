@@ -21,10 +21,16 @@ namespace LibElvanto.Contracts;
 "home_state",
 "home_postcode",
 "home_country",
+"mailing_address",
+"mailing_address2",
+"mailing_city",
+"mailing_state",
+"mailing_postcode",
+"mailing_country",
 "locations",
 "family"
 } )]
-public class Person : ElvantoContract
+public class  Person : ElvantoContract
 {
     [JsonPropertyName( "date_added" )]
     public string? DateAdded { get; set; }
@@ -119,6 +125,24 @@ public class Person : ElvantoContract
 
     [JsonPropertyName( "home_country" )]
     public string? Country { get; set; }
+
+    [JsonPropertyName( "mailing_address" )]
+    public string? MailingAddress { get; set; }
+
+    [JsonPropertyName( "mailing_address2" )]
+    public string? MailingAddress2 { get; set; }
+
+    [JsonPropertyName( "mailing_city" )]
+    public string? MailingCity { get; set; }
+
+    [JsonPropertyName( "mailing_state" )]
+    public string? MailingState { get; set; }
+
+    [JsonPropertyName( "mailing_postcode" )]
+    public string? MailingPostCode { get; set; }
+
+    [JsonPropertyName( "mailing_country" )]
+    public string? MailingCountry { get; set; }
 
     public string? Grade { get; set; }
 
