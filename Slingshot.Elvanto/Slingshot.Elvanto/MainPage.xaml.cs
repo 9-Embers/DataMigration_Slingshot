@@ -227,9 +227,9 @@ public partial class MainPage : ContentPage
                  $"True," + //Give Individually
                  $"{( person.Deceased == 1 ? "TRUE" : "FALSE" )}";
                 personSb.AppendLine( personRow );
-                personSbWithGuid.Append( personRow + $",{person.Id}" );
+                personSbWithGuid.AppendLine( personRow + $",{person.Id}" );
 
-                personSbMailingInformation.Append( $"{personId},{person.Id},{person.MailingAddress},{person.MailingAddress2},{person.MailingCity},{person.State},{person.MailingPostCode},{person.MailingCountry}" );
+                personSbMailingInformation.AppendLine( $"{personId},{person.Id},{person.MailingAddress},{person.MailingAddress2},{person.MailingCity},{person.State},{person.MailingPostCode},{person.MailingCountry}" );
 
                 //PhoneNumbers
                 if ( !string.IsNullOrWhiteSpace( person.Phone ) )
