@@ -154,7 +154,7 @@ public partial class MainPage : ContentPage
             var personSbWithGuid = new StringBuilder();
             personSbWithGuid.AppendLine( "Id,FamilyId,FamilyName,FamilyImageUrl,FamilyRole,FirstName,NickName,LastName,MiddleName,Salutation,Suffix,Email,Gender,MaritalStatus,Birthdate,AnniversaryDate,RecordStatus,InactiveReason,ConnectionStatus,EmailPreference,CreatedDateTime,ModifiedDateTime,PersonPhotoUrl,CampusId,CampusName,Note,Grade,GiveIndividually,IsDeceased,ForeignGuid" );
             var personSbMailingInformation = new StringBuilder();
-            personSb.AppendLine( "Id,ForeignGuid,Street1,Street2,City,State,PostalCode,Country" );
+            personSbMailingInformation.AppendLine( "Id,ForeignGuid,Street1,Street2,City,State,PostalCode,Country" );
 
             var personAttributeValue = new StringBuilder();
             personAttributeValue.AppendLine( "PersonId,AttributeKey,AttributeValue" );
