@@ -229,7 +229,7 @@ public partial class MainPage : ContentPage
                 personSb.AppendLine( personRow );
                 personSbWithGuid.AppendLine( personRow + $",{person.Id}" );
 
-                personSbMailingInformation.AppendLine( $"{personId},{person.Id},{person.MailingAddress.ForCSV()},{person.MailingAddress2.ForCSV()},{person.MailingCity.ForCSV()},{person.State.ForCSV()},{person.MailingPostCode.ForCSV()},{person.MailingCountry.ForCSV()}" );
+                personSbMailingInformation.AppendLine( $"{personId},{person.Id},{person.MailingAddress.ForCSV()},{person.MailingAddress2.ForCSV()},{person.MailingCity.ForCSV()},{person.State.ForCSV()},{person.MailingPostCode.ForCSV()},{CountryAbbreviation.GetCode( person.MailingCountry )}" );
 
                 //PhoneNumbers
                 if ( !string.IsNullOrWhiteSpace( person.Phone ) )
