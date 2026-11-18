@@ -403,6 +403,12 @@ namespace Slingshot.CCB.Utilities
                     {
                         moreExist = GetGroupProfiles( selectedGroupTypes, modifiedSince, currentPage );
                     }
+                    catch ( DirectorGroupIdOutOfRangeException )
+                    {
+                        // A department or director id that cannot make a unique director group id is a data problem,
+                        // not an oversized API response, so stop the group export instead of retrying group by group.
+                        throw;
+                    }
                     catch
                     {
                         /* June 5, 2020 - Shaun
@@ -555,6 +561,11 @@ namespace Slingshot.CCB.Utilities
                             try
                             {
                                 GetGroupProfileById( groupId );
+                            }
+                            catch ( DirectorGroupIdOutOfRangeException )
+                            {
+                                // Stop the group export; see ExportGroups.
+                                throw;
                             }
                             catch
                             {
