@@ -47,6 +47,20 @@ namespace Slingshot.PCO.Utilities.Translators
                 Note = string.Join( ",", inputPerson.GetNotes() )
             };
 
+            /*
+                11/20/2026 - JG
+
+                PCO returns the year 1885 for a birthday that has no year. Slingshot marks a birthday without a
+                year with the magic year on the Person model, which Rock's importer turns into a birthday with
+                no year, so the month and day are kept and only the year is replaced.
+
+                Reason: PCO uses the year 1885 for birthdays without a year.
+            */
+            if ( person.Birthdate.HasValue && person.Birthdate.Value.Year == 1885 )
+            {
+                person.Birthdate = new DateTime( person.BirthdateNoYearMagicYear, person.Birthdate.Value.Month, person.Birthdate.Value.Day );
+            }
+
             return person;
         }
 
