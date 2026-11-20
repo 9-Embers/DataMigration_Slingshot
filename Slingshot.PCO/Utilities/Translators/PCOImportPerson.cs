@@ -34,7 +34,7 @@ namespace Slingshot.PCO.Utilities.Translators
                 MaritalStatus = inputPerson.GetMaritalStatus(),
                 Birthdate = inputPerson.Birthdate,
                 AnniversaryDate = inputPerson.Anniversary,
-                Grade = inputPerson.Grade?.ToString(),
+                Grade = inputPerson.GetGrade(),
                 CreatedDateTime = inputPerson.CreatedAt,
                 ModifiedDateTime = inputPerson.UpdatedAt,
                 FamilyId = inputPerson.Household?.Id,
@@ -217,6 +217,36 @@ namespace Slingshot.PCO.Utilities.Translators
             }
 
             return MaritalStatus.Unknown;
+        }
+
+        /// <summary>
+        /// Gets the grade as text that Rock's importer can match to one of its school grades. PCO stores the grade
+        /// as a number, but Rock only matches the description or abbreviation of a school grade value.
+        /// </summary>
+        /// <param name="inputPerson">The person being translated.</param>
+        /// <returns>The grade abbreviation, or null when the person has no grade Rock can match.</returns>
+        private static string GetGrade( this PersonDTO inputPerson )
+        {
+            if ( !inputPerson.Grade.HasValue || inputPerson.Grade.Value < 0 || inputPerson.Grade.Value > 12 )
+            {
+                return null;
+            }
+
+            var grade = inputPerson.Grade.Value;
+
+            switch ( grade )
+            {
+                case 0:
+                    return "K";
+                case 1:
+                    return "1st";
+                case 2:
+                    return "2nd";
+                case 3:
+                    return "3rd";
+                default:
+                    return grade + "th";
+            }
         }
 
         private static List<string> GetNotes( this PersonDTO inputPerson )
