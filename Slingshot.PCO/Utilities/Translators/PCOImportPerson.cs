@@ -248,10 +248,16 @@ namespace Slingshot.PCO.Utilities.Translators
                 var fieldDefinition = personAttributes.Where( f => f.Id == attribute.FieldDefinitionId ).FirstOrDefault();
                 if ( fieldDefinition != null )
                 {
+                    var attributeValue = attribute.Value;
+                    if ( fieldDefinition.DataType == "checkboxes" )
+                    {
+                        attributeValue = inputPerson.GetCheckboxesValue( fieldDefinition.Id );
+                    }
+
                     attributeList.Add( new PersonAttributeValue
                     {
                         AttributeKey = fieldDefinition.Id + "_" + fieldDefinition.Slug,
-                        AttributeValue = attribute.Value,
+                        AttributeValue = attributeValue,
                         PersonId = inputPerson.Id
                     } );
                 }
@@ -306,6 +312,23 @@ namespace Slingshot.PCO.Utilities.Translators
             }
 
             return attributeList;
+        }
+
+        /// <summary>
+        /// Gets the value of a checkboxes field. PCO returns one row for each ticked option, so the options are
+        /// combined into a single comma separated value.
+        /// </summary>
+        /// <param name="inputPerson">The person being translated.</param>
+        /// <param name="fieldDefinitionId">The identifier of the checkboxes field definition.</param>
+        /// <returns>The distinct ticked options joined with a comma.</returns>
+        private static string GetCheckboxesValue( this PersonDTO inputPerson, int fieldDefinitionId )
+        {
+            var options = inputPerson.FieldData
+                .Where( fieldData => fieldData.FieldDefinitionId == fieldDefinitionId && !string.IsNullOrWhiteSpace( fieldData.Value ) )
+                .Select( fieldData => fieldData.Value.Trim() )
+                .Distinct( StringComparer.OrdinalIgnoreCase );
+
+            return string.Join( ",", options );
         }
 
         private static Campus GetCampus( this PersonDTO HeadOfHouse )
