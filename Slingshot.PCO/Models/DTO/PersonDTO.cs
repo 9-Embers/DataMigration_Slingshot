@@ -122,7 +122,6 @@ namespace Slingshot.PCO.Models.DTO
             Avatar = avatar;
         }
 
-        private void SetGrade( DataItem data )
         private void SetContactInfo( DataItem data, Dictionary<string, DataItem> included )
         {
             ContactData = new ContactDataDTO();
