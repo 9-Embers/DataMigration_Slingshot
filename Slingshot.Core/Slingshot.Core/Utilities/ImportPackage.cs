@@ -27,6 +27,13 @@ namespace Slingshot.Core.Utilities
 
         private static List<FamilyAddress> _familyAddresses = new List<FamilyAddress>();
 
+        /// <summary>
+        /// The largest total size of the image files added to one image package before a new one is started. This
+        /// is set below Rock's default upload limit of 100 MB so the finished zip can still be uploaded to the Bulk
+        /// Import page.
+        /// </summary>
+        private static readonly long _maxImagePackageBytes = 90 * 1024 * 1024;
+
         #endregion Private Fields
 
         #region Public Properties
@@ -155,6 +162,12 @@ namespace Slingshot.Core.Utilities
                 }
             }
 
+            // remove image packages left by a previous export, because ZipArchiveMode.Create fails when the file exists
+            foreach ( var oldImagePackage in Directory.GetFiles( _appDirectory, exportFilename + "_*.Images.slingshot" ) )
+            {
+                File.Delete( oldImagePackage );
+            }
+
             // zip image files
             var files = Directory.GetFiles( _imageDirectory );
             if ( files.Any() )
@@ -166,8 +179,8 @@ namespace Slingshot.Core.Utilities
 
                 foreach ( var file in files )
                 {
-                    // over 100MB
-                    if ( length < 104857600 )
+                    // start a new package before this file would take the current one over the limit
+                    if ( length == 0 || length + new System.IO.FileInfo( file ).Length <= _maxImagePackageBytes )
                     {
                         zip.CreateEntryFromFile( file, Path.GetFileName( file ) );
                     }

@@ -98,10 +98,18 @@ namespace Slingshot.PCO.Utilities
                 {
                     WebClient client = new WebClient();
 
-                    var path = Path.Combine( ImportPackage.ImageDirectory, "Person_" + person.Id + ".png" );
                     try
                     {
-                        client.DownloadFile( new Uri( person.Avatar ), path );
+                        // Older versions of Rock take the image type from the file extension, so keep the one PCO served.
+                        var avatarUri = new Uri( person.Avatar );
+                        var extension = Path.GetExtension( avatarUri.AbsolutePath );
+                        if ( string.IsNullOrWhiteSpace( extension ) )
+                        {
+                            extension = ".png";
+                        }
+
+                        var path = Path.Combine( ImportPackage.ImageDirectory, "Person_" + person.Id + extension );
+                        client.DownloadFile( avatarUri, path );
                         ApiCounter++;
                     }
                     catch ( Exception ex )

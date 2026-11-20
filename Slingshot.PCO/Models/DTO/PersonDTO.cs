@@ -114,7 +114,17 @@ namespace Slingshot.PCO.Models.DTO
             }
 
             var avatar = ( string ) data.Item.avatar;
-            if ( avatar.Contains( "static" ) )
+
+            /*
+                11/20/2026 - JG
+
+                Newer versions of the PCO People API return an avatar URL for every person. A person without a
+                photo gets a generated initials image whose URL contains /initials/, and importing it would
+                make Rock show a placeholder as if it were the person's photo.
+
+                Reason: PCO sends generated initials images for people without a photo.
+            */
+            if ( avatar.Contains( "static" ) || avatar.Contains( "/initials/" ) )
             {
                 return;
             }
@@ -122,7 +132,6 @@ namespace Slingshot.PCO.Models.DTO
             Avatar = avatar;
         }
 
-        private void SetGrade( DataItem data )
         private void SetContactInfo( DataItem data, Dictionary<string, DataItem> included )
         {
             ContactData = new ContactDataDTO();

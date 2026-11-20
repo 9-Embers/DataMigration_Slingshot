@@ -34,7 +34,7 @@ namespace Slingshot.PCO.Utilities.Translators
                 MaritalStatus = inputPerson.GetMaritalStatus(),
                 Birthdate = inputPerson.Birthdate,
                 AnniversaryDate = inputPerson.Anniversary,
-                Grade = inputPerson.Grade?.ToString(),
+                Grade = inputPerson.GetGrade(),
                 CreatedDateTime = inputPerson.CreatedAt,
                 ModifiedDateTime = inputPerson.UpdatedAt,
                 FamilyId = inputPerson.Household?.Id,
@@ -46,6 +46,20 @@ namespace Slingshot.PCO.Utilities.Translators
                 Attributes = inputPerson.GetAttributes( personAttributes, backgroundCheckPerson ),
                 Note = string.Join( ",", inputPerson.GetNotes() )
             };
+
+            /*
+                11/20/2026 - JG
+
+                PCO returns the year 1885 for a birthday that has no year. Slingshot marks a birthday without a
+                year with the magic year on the Person model, which Rock's importer turns into a birthday with
+                no year, so the month and day are kept and only the year is replaced.
+
+                Reason: PCO uses the year 1885 for birthdays without a year.
+            */
+            if ( person.Birthdate.HasValue && person.Birthdate.Value.Year == 1885 )
+            {
+                person.Birthdate = new DateTime( person.BirthdateNoYearMagicYear, person.Birthdate.Value.Month, person.Birthdate.Value.Day );
+            }
 
             return person;
         }
@@ -219,6 +233,36 @@ namespace Slingshot.PCO.Utilities.Translators
             return MaritalStatus.Unknown;
         }
 
+        /// <summary>
+        /// Gets the grade as text that Rock's importer can match to one of its school grades. PCO stores the grade
+        /// as a number, but Rock only matches the description or abbreviation of a school grade value.
+        /// </summary>
+        /// <param name="inputPerson">The person being translated.</param>
+        /// <returns>The grade abbreviation, or null when the person has no grade Rock can match.</returns>
+        private static string GetGrade( this PersonDTO inputPerson )
+        {
+            if ( !inputPerson.Grade.HasValue || inputPerson.Grade.Value < 0 || inputPerson.Grade.Value > 12 )
+            {
+                return null;
+            }
+
+            var grade = inputPerson.Grade.Value;
+
+            switch ( grade )
+            {
+                case 0:
+                    return "K";
+                case 1:
+                    return "1st";
+                case 2:
+                    return "2nd";
+                case 3:
+                    return "3rd";
+                default:
+                    return grade + "th";
+            }
+        }
+
         private static List<string> GetNotes( this PersonDTO inputPerson )
         {
             var notes = new List<string>();
@@ -248,10 +292,16 @@ namespace Slingshot.PCO.Utilities.Translators
                 var fieldDefinition = personAttributes.Where( f => f.Id == attribute.FieldDefinitionId ).FirstOrDefault();
                 if ( fieldDefinition != null )
                 {
+                    var attributeValue = attribute.Value;
+                    if ( fieldDefinition.DataType == "checkboxes" )
+                    {
+                        attributeValue = inputPerson.GetCheckboxesValue( fieldDefinition.Id );
+                    }
+
                     attributeList.Add( new PersonAttributeValue
                     {
                         AttributeKey = fieldDefinition.Id + "_" + fieldDefinition.Slug,
-                        AttributeValue = attribute.Value,
+                        AttributeValue = attributeValue,
                         PersonId = inputPerson.Id
                     } );
                 }
@@ -306,6 +356,23 @@ namespace Slingshot.PCO.Utilities.Translators
             }
 
             return attributeList;
+        }
+
+        /// <summary>
+        /// Gets the value of a checkboxes field. PCO returns one row for each ticked option, so the options are
+        /// combined into a single comma separated value.
+        /// </summary>
+        /// <param name="inputPerson">The person being translated.</param>
+        /// <param name="fieldDefinitionId">The identifier of the checkboxes field definition.</param>
+        /// <returns>The distinct ticked options joined with a comma.</returns>
+        private static string GetCheckboxesValue( this PersonDTO inputPerson, int fieldDefinitionId )
+        {
+            var options = inputPerson.FieldData
+                .Where( fieldData => fieldData.FieldDefinitionId == fieldDefinitionId && !string.IsNullOrWhiteSpace( fieldData.Value ) )
+                .Select( fieldData => fieldData.Value.Trim() )
+                .Distinct( StringComparer.OrdinalIgnoreCase );
+
+            return string.Join( ",", options );
         }
 
         private static Campus GetCampus( this PersonDTO HeadOfHouse )
