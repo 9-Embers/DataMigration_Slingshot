@@ -155,6 +155,12 @@ namespace Slingshot.Core.Utilities
                 }
             }
 
+            // remove image packages left by a previous export, because ZipArchiveMode.Create fails when the file exists
+            foreach ( var oldImagePackage in Directory.GetFiles( _appDirectory, exportFilename + "_*.Images.slingshot" ) )
+            {
+                File.Delete( oldImagePackage );
+            }
+
             // zip image files
             var files = Directory.GetFiles( _imageDirectory );
             if ( files.Any() )
